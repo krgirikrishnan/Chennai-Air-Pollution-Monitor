@@ -1,4 +1,4 @@
-# NATURAL AIR CHECK - Govt API + Live + Schedule - 1 Table Only da pa Giri
+
 import requests
 import pandas as pd
 from pyspark.sql.functions import *
@@ -31,7 +31,7 @@ natural_live = df_api.withColumn("live_value", (col("govt_value") + rand()*6).ca
    .withColumn("air_quality", when(col("live_value") > 50, "Polluted Air").when(col("live_value") > 30, "Moderate").otherwise("Fresh Natural Air")) \
    .withColumn("nature_note", when(col("live_value") < 30, "Good for morning walk da pa!").otherwise("Mask podu da pa!"))
 
-# FINAL - ORE TABLE THAN DA PA GIRI - NATURAL AIR ONLY!
+# FINAL  - NATURAL AIR ONLY!
 print(f"\n=== Natural Air Live Check - {datetime.now()} ===")
 display(natural_live.select("area", "pollutant", "govt_value", "live_value", "air_quality", "nature_note", "timestamp"))
 
